@@ -136,6 +136,8 @@ public class DeduplicationWriter : IDeduplicationWriter
                 HomeTeamId = game.HomeTeam.Id,
                 VisitingTeam = game.VisitingTeam.Name,
                 VisitingTeamId = game.VisitingTeam.Id,
+                CompetitionId = game.Competition.Id,
+                Competition = game.Competition.Name,
                 Date = game.Date.Value,
             });
 
