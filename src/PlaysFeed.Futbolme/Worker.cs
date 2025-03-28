@@ -10,7 +10,7 @@ public class Worker : BackgroundService
     /// <summary>
     /// Poll interval. Should be read from configuration file.
     /// </summary>
-    private const uint PollInterval = 60;
+    private const uint PollInterval = 15;
 
 
     private readonly ILogger<Worker> _logger;

@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaysFeed.Futbolme", "src\P
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C22F941D-20A8-45D2-9857-4037447F4F0A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaysFeed.Writer", "src\PlaysFeed.Writer\PlaysFeed.Writer.csproj", "{46021283-AAF7-474F-81A7-6ECB04942F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaysFeed.DataAccess", "src\PlaysFeed.DataAccess\PlaysFeed.DataAccess.csproj", "{FCBD0CBA-325E-48F7-BCD8-86A44DD0CCD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,14 @@ Global
 		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46021283-AAF7-474F-81A7-6ECB04942F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46021283-AAF7-474F-81A7-6ECB04942F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46021283-AAF7-474F-81A7-6ECB04942F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46021283-AAF7-474F-81A7-6ECB04942F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCBD0CBA-325E-48F7-BCD8-86A44DD0CCD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBD0CBA-325E-48F7-BCD8-86A44DD0CCD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBD0CBA-325E-48F7-BCD8-86A44DD0CCD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBD0CBA-325E-48F7-BCD8-86A44DD0CCD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

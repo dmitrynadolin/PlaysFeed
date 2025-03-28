@@ -39,7 +39,11 @@ public class ResultsPage
         {
             var meta = container.FindElements(By.TagName("meta"));
 
-            var result = new MatchResult();
+            var result = new MatchResult
+            {
+                Sport = "Football",
+                Competition = "LIGAT HA'AL"
+            };
 
             foreach (var element in meta)
             {
@@ -64,25 +68,13 @@ public class ResultsPage
                     continue;
                 }
 
-                if (element.GetAttribute("itemprop").Contains("endDate"))
-                {
-                    var endDateString = element.GetAttribute("content");
-
-                    if (DateTime.TryParse(endDateString, out var dateTime))
-                    {
-                        result.EndDateTime = dateTime;
-                    }
-
-                    continue;
-                }
-
                 if (element.GetAttribute("itemprop").Contains("startDate"))
                 {
                     var startDateString = element.GetAttribute("content");
 
                     if (DateTime.TryParse(startDateString, out var dateTime))
                     {
-                        result.StartDateTime = dateTime;
+                        result.DateTime = DateTime.SpecifyKind(dateTime, DateTimeKind.Utc);
                     }
                 }
             }
