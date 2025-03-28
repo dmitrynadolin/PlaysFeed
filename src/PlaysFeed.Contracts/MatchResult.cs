@@ -6,7 +6,14 @@ public class MatchResult
     public string LocalTeam { get; set; }
     public string VisitingTeam { get; set; }
     public DateTime? DateTime { get; set; }
+
+    /// <summary>
+    /// Not used in the current version of the application.
+    /// </summary>
     public long? LocalScore { get; set; }
+    /// <summary>
+    /// Not used in the current version of the application.
+    /// </summary>
     public long? VisitingScore { get; set; }
 
     public override string ToString()

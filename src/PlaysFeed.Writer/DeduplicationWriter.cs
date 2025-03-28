@@ -7,11 +7,21 @@ using PlaysFeed.Data;
 using PlaysFeed.DataAccess;
 using StackExchange.Redis;
 
+/// <summary>
+/// Writes deduplicated match results to the storage.
+/// </summary>
 public class DeduplicationWriter : IDeduplicationWriter
 {
     private readonly GamesDbContext _dbContext;
     private readonly ILogger<DeduplicationWriter> _logger;
     private readonly IConnectionMultiplexer _redis;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="DeduplicationWriter"/> class.
+    /// </summary>
+    /// <param name="dbContext">The database context.</param>
+    /// <param name="redis">The Redis connection multiplexer.</param>
+    /// <param name="logger">The logger instance.</param>
     public DeduplicationWriter(GamesDbContext dbContext, IConnectionMultiplexer redis,
         ILogger<DeduplicationWriter> logger)
     {
@@ -20,6 +30,12 @@ public class DeduplicationWriter : IDeduplicationWriter
         _redis = redis;
     }
 
+    /// <summary>
+    /// Writes a batch of deduplicated match results to the storage.
+    /// </summary>
+    /// <param name="results">The batch of match results to write.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task that represents the asynchronous write operation.</returns>
     public async Task WriteBatch(Batch<MatchResult> results, CancellationToken cancellationToken)
     {
         var newGames = await SyncBatchWithDb(results, cancellationToken);
@@ -28,13 +44,12 @@ public class DeduplicationWriter : IDeduplicationWriter
         await AddGamesByCompetitionAsync(newGames);
     }
 
-
     /// <summary>
-    /// This method is responsible for synchronizing the incoming batch of match results with the postgres database.
+    /// Synchronizes the incoming batch of match results with the PostgreSQL database.
     /// </summary>
-    /// <param name="results"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
+    /// <param name="results">The batch of match results.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A list of new games that were added to the database.</returns>
     private async Task<List<Game>> SyncBatchWithDb(Batch<MatchResult> results, CancellationToken cancellationToken)
     {
         var newGames = new List<Game>();
@@ -53,11 +68,8 @@ public class DeduplicationWriter : IDeduplicationWriter
 
         var sportIds = sports.Select(s => s.Id).ToList();
 
-        
-
-        // In the real life we are preloading only currently held competitions
+        // In real life, we are preloading only currently held competitions
         var competitions = await _dbContext.Competitions.ToListAsync(cancellationToken);
-
 
         // Preload only teams that are present in the batch
         var teams = await _dbContext.Teams
@@ -117,10 +129,10 @@ public class DeduplicationWriter : IDeduplicationWriter
     }
 
     /// <summary>
-    /// This method is responsible for adding the new games to the Redis cache
+    /// Adds the new games to the Redis cache.
     /// </summary>
-    /// <param name="games"></param>
-    /// <returns></returns>
+    /// <param name="games">The list of new games.</param>
+    /// <returns>A task that represents the asynchronous add operation.</returns>
     private async Task AddGamesByCompetitionAsync(IEnumerable<Game> games)
     {
         var db = _redis.GetDatabase();

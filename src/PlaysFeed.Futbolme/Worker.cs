@@ -12,12 +12,18 @@ public class Worker : BackgroundService
     /// </summary>
     private const uint PollInterval = 15;
 
-
     private readonly ILogger<Worker> _logger;
     private readonly IPageRegistry _pageRegistry;
     private readonly IBus _publisher;
     private readonly IHostApplicationLifetime _lifetime;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Worker"/> class.
+    /// </summary>
+    /// <param name="logger">The logger instance.</param>
+    /// <param name="pageRegistry">The page registry containing URLs to scrape.</param>
+    /// <param name="publisher">The message bus publisher.</param>
+    /// <param name="lifetime">The application lifetime manager.</param>
     public Worker(ILogger<Worker> logger, IPageRegistry pageRegistry, IBus publisher, IHostApplicationLifetime lifetime)
     {
         _logger = logger;
@@ -26,6 +32,11 @@ public class Worker : BackgroundService
         _lifetime = lifetime;
     }
 
+    /// <summary>
+    /// Executes the background service.
+    /// </summary>
+    /// <param name="stoppingToken">The cancellation token.</param>
+    /// <returns>A task that represents the asynchronous execute operation.</returns>
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
@@ -53,7 +64,12 @@ public class Worker : BackgroundService
         }
     }
 
-
+    /// <summary>
+    /// The inner loop body that performs the scraping and publishing.
+    /// </summary>
+    /// <param name="driver">The Chrome driver instance.</param>
+    /// <param name="stoppingToken">The cancellation token.</param>
+    /// <returns>A task that represents the asynchronous inner loop operation.</returns>
     private async Task InnerLoopBody(ChromeDriver driver, CancellationToken stoppingToken)
     {
         try
@@ -67,12 +83,10 @@ public class Worker : BackgroundService
                     await page.GetMatchResultsAsync(url, stoppingToken);
 
                 // Publish results to MassTransit RabbitMQ
-
                 await _publisher.PublishBatch(matchResults, stoppingToken);
             }
-
         }
-        catch(Exception ex) // Inner loop never throws due to the transient errors
+        catch (Exception ex) // Inner loop never throws due to the transient errors
         {
             _logger.LogError(ex, "Failed to read data from the futbolme.");
         }

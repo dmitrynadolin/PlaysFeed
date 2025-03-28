@@ -4,30 +4,35 @@ using PlaysFeed.Data;
 
 namespace PlaysFeed.Futbolme;
 
-
+/// <summary>
+/// Represents a page with match results.
+/// </summary>
 public class ResultsPage
 {
     private readonly IWebDriver _driver;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ResultsPage"/> class.
+    /// </summary>
+    /// <param name="driver">The web driver instance.</param>
     public ResultsPage(IWebDriver driver)
     {
         _driver = driver ?? throw new ArgumentNullException(nameof(driver));
     }
 
     /// <summary>
-    /// Scrapes match results from the given Futbolme URL.
+    /// Scrapes match results from the given URL.
     /// </summary>
-    /// <param name="url"></param>
-    /// <param name="token"></param>
-    /// <returns></returns>
-    /// <exception cref="ArgumentNullException"></exception>
+    /// <param name="url">The URL to scrape.</param>
+    /// <param name="token">The cancellation token.</param>
+    /// <returns>A list of match results.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the URL is null or empty.</exception>
     public async Task<IReadOnlyList<MatchResult>> GetMatchResultsAsync(string url, CancellationToken token)
     {
         if (string.IsNullOrWhiteSpace(url))
         {
             throw new ArgumentNullException(nameof(url));
         }
-
 
         _driver.Navigate().GoToUrl(url);
         Thread.Sleep(1000); // wait for JavaScript content to load
