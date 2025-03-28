@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaysFeed.Contracts", "src\PlaysFeed.Contracts\PlaysFeed.Contracts.csproj", "{95387D01-59C9-4324-98AE-A79EC5C6CC46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaysFeed.Api", "src\PlaysFeed.Api\PlaysFeed.Api.csproj", "{4DC30D71-BDEC-4C2D-B461-93B0EA2A9DE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web Scrapers", "Web Scrapers", "{7A2D3D0B-F108-43A1-8686-A004AD369F09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlaysFeed.Futbolme", "src\PlaysFeed.Futbolme\PlaysFeed.Futbolme.csproj", "{4CE3B8A2-9920-4D27-9628-84D11623C521}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C22F941D-20A8-45D2-9857-4037447F4F0A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95387D01-59C9-4324-98AE-A79EC5C6CC46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95387D01-59C9-4324-98AE-A79EC5C6CC46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95387D01-59C9-4324-98AE-A79EC5C6CC46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95387D01-59C9-4324-98AE-A79EC5C6CC46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DC30D71-BDEC-4C2D-B461-93B0EA2A9DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DC30D71-BDEC-4C2D-B461-93B0EA2A9DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DC30D71-BDEC-4C2D-B461-93B0EA2A9DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DC30D71-BDEC-4C2D-B461-93B0EA2A9DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE3B8A2-9920-4D27-9628-84D11623C521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE3B8A2-9920-4D27-9628-84D11623C521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE3B8A2-9920-4D27-9628-84D11623C521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE3B8A2-9920-4D27-9628-84D11623C521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C22F941D-20A8-45D2-9857-4037447F4F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CE3B8A2-9920-4D27-9628-84D11623C521} = {7A2D3D0B-F108-43A1-8686-A004AD369F09}
+	EndGlobalSection
+EndGlobal

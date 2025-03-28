@@ -1,0 +1,18 @@
+services:
+  playsfeed.futbolme:
+    image: ${DOCKER_REGISTRY-}playsfeedfutbolme
+    build:
+      context: .
+      dockerfile: PlaysFeed.Futbolme/Dockerfile
+
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: unless-stopped
+    ports:
+      - "5681:5672/tcp"
+      - "15681:15672/tcp"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "somesecretcookie"
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
